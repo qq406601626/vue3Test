@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent,ref } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 
 export default defineComponent({
@@ -14,5 +14,15 @@ export default defineComponent({
   components: {
     HelloWorld,
   },
+  setup(){
+    const count = ref(0)
+    console.log(count) // 0
+    return {
+      name:ref('111')
+    }
+  },
+  mounted() {
+    console.log(this.name)
+  }
 });
 </script>
