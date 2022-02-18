@@ -1,17 +1,25 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
+import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router'
+import Dashboard from '../views/index.vue'
+import Button from '../views/button.vue'
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
+    {
+        path: '/',
+        name: 'Dashboard',
+        component: Dashboard,
+        children: [
+            {
+                path: 'Button',
+                name: 'Button',
+                component: Button,
+            }
+        ]
+    },
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+    history: createWebHashHistory(),
+    routes
 })
 
 export default router
