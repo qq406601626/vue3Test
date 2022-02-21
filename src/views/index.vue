@@ -8,6 +8,7 @@
 import {defineComponent} from 'vue';
 
 export default defineComponent({
+  name:'index',
   components: {},
   setup() {
     return {}
