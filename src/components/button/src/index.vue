@@ -6,16 +6,16 @@
       :autofocus="autofocus"
       :type="nativeType"
       :class="[
-      type ? 'el-button--' + type : '',
-      buttonSize ? 'el-button--' + buttonSize : '',
-      {
-        'is-disabled': buttonDisabled,
-        'is-loading': loading,
-        'is-plain': plain,
-        'is-round': round,
-        'is-circle': circle
-      }
-    ]"
+          type?'el-button--'+type:'',
+          buttonSize?'el-button--' + buttonSize : '',
+          {
+            'is-disabled': buttonDisabled,
+            'is-loading': loading,
+            'is-plain': plain,
+            'is-round': round,
+            'is-circle': circle
+          }
+      ]"
   >
     <i class="el-icon-loading" v-if="loading"></i>
     <i :class="icon" v-if="icon && !loading"></i>
@@ -23,11 +23,11 @@
   </button>
 </template>
 <script>
-import { computed, inject } from 'vue'
+import {computed, inject} from "vue";
+
 const ELEMENT = {}
 export default {
   name: 'ElButton',
-
   props: {
     type: {
       type: String,
@@ -48,41 +48,31 @@ export default {
     autofocus: Boolean,
     round: Boolean,
     circle: Boolean
-  },
 
-  methods: {
-    handleClick(evt) {
-      this.$emit('click', evt);
-    }
   },
-  setup(props,ctx) {
-    // inject
+  setup(props, ctx) {
     const elForm = inject('elForm', '')
     const elFormItem = inject('elFormItem', '')
 
-    // computed
     const _elFormItemSize = computed(() => {
       return (elFormItem || {}).elFormItemSize
     })
     const buttonSize = computed(() => {
-      // todo ELEMENT
       return props.size || _elFormItemSize.value || (ELEMENT || {}).size
     })
     const buttonDisabled = computed(() => {
       return props.disabled || (elForm || {}).disabled
     })
-
-    //methods
     const handleClick = (evt) => {
       ctx.emit('click', evt)
     }
-
     return {
       _elFormItemSize,
       buttonSize,
       buttonDisabled,
       handleClick
     }
-  }
-};
+  },
+}
 </script>
+<style></style>
