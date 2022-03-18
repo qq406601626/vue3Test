@@ -1,15 +1,10 @@
 <template>
-  <div class="link-box">
-    <router-link to="/button">button</router-link>
-  </div>
-  <router-view></router-view>
+  <el-button>Button</el-button>
 </template>
 
-<script setup lang="ts"></script>
+<script>
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
+export default {
+  name: 'App'
 }
-</style>
+</script>
