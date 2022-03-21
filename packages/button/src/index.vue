@@ -22,10 +22,20 @@
     <span v-if="$slots.default"><slot></slot></span>
   </button>
 </template>
-<script>
+<script lang='ts'>
 import {computed, inject} from "vue";
 
-const ELEMENT = {}
+const ELEMENT: { size?: number } = {}
+
+// TODOS: replace these interface definition with actual ElForm interface
+interface ElForm {
+  disabled: boolean;
+}
+
+interface ElFormItem {
+  elFormItemSize: number;
+}
+
 export default {
   name: 'ElButton',
   props: {
@@ -51,17 +61,19 @@ export default {
 
   },
   setup(props, ctx) {
-    const elForm = inject('elForm', '')
-    const elFormItem = inject('elFormItem', '')
+    // inject
+    const elForm = inject<ElForm>('elForm')
+    const elFormItem = inject<ElFormItem>('elFormItem')
 
+    // computed
     const _elFormItemSize = computed(() => {
-      return (elFormItem || {}).elFormItemSize
+      return elFormItem.elFormItemSize
     })
     const buttonSize = computed(() => {
       return props.size || _elFormItemSize.value || (ELEMENT || {}).size
     })
     const buttonDisabled = computed(() => {
-      return props.disabled || (elForm || {}).disabled
+      return props.disabled || elForm.disabled
     })
     const handleClick = (evt) => {
       ctx.emit('click', evt)
