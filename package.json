@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "cz": "npx git-cz",
+    "cz": "git add . & npx git-cz",
     "gen": "bash ./scripts/gc.sh",
     "storybook": "start-storybook",
     "bootstrap": "yarn && npx lerna bootstrap"
