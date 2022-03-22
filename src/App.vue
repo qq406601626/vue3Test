@@ -3,7 +3,8 @@
     <router-view />
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/button">Button</router-link>
+      <router-link to="/button">Button</router-link> |
+      <router-link to="/badge">Badge</router-link>
     </div>
   </div>
 </template>
