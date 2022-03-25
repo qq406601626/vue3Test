@@ -1,6 +1,8 @@
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 import Button from "@element-plus/button/doc/index.vue";
 import Badge from "@element-plus/badge/doc/index.vue";
+import Tag from "@element-plus/tag/doc/index.vue";
+
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -11,6 +13,10 @@ const routes: Array<RouteRecordRaw> = [
         path: "/badge",
         component: Badge
     },
+    {
+        path: "/tag",
+        component: Tag
+    }
 ];
 
 const router = createRouter({
