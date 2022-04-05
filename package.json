@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "cz": "git add . & npx git-cz",
     "gen": "bash ./scripts/gc.sh",
     "storybook": "start-storybook",
     "bootstrap": "yarn && npx lerna bootstrap",
-    "lint": "eslint . --fix --ext .vue,.js,.ts"
+    "lint": "eslint . --fix --ext .vue,.js,.ts",
+    "build": "yarn bootstrap && yarn build-storybook"
   },
   "peerDependencies": {
     "vue": "^3.0.0-rc.1",

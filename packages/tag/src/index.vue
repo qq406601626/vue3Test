@@ -1,36 +1,36 @@
 <template>
   <span
-      v-if="!disableTransitions"
-      :class="classes"
-      :style="{ backgroundColor: color }"
-      @click="handleClick"
+    v-if="!disableTransitions"
+    :class="classes"
+    :style="{ backgroundColor: color }"
+    @click="handleClick"
   >
     <slot></slot>
     <i
-        v-if="closable"
-        class="el-tag__close el-icon-close"
-        @click="handleClose"
+      v-if="closable"
+      class="el-tag__close el-icon-close"
+      @click="handleClose"
     >
     </i>
   </span>
   <transition v-else name="el-zoom-in-center">
     <span
-        :class="classes"
-        :style="{ backgroundColor: color }"
-        @click="handleClick"
+      :class="classes"
+      :style="{ backgroundColor: color }"
+      @click="handleClick"
     >
       <slot></slot>
       <i
-          v-if="closable"
-          class="el-tag__close el-icon-close"
-          @click="handleClose"
+        v-if="closable"
+        class="el-tag__close el-icon-close"
+        @click="handleClose"
       ></i>
     </span>
   </transition>
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue'
+import { computed, defineComponent } from 'vue'
 
 const ELEMENT: { size?: number } = {}
 
@@ -69,7 +69,7 @@ export default defineComponent({
       return props.size || (ELEMENT || {}).size
     })
     const classes = computed(() => {
-      const {type, hit, effect} = props
+      const { type, hit, effect } = props
       return [
         'el-tag',
         type ? `el-tag--${type}` : '',

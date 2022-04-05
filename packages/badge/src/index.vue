@@ -3,16 +3,16 @@
     <slot></slot>
     <transition name="el-zoom-in-center">
       <sup
-          v-show="!hidden && (content || content === 0 || isDot)"
-          class="el-badge__content"
-          :class="[
+        v-show="!hidden && (content || content === 0 || isDot)"
+        class="el-badge__content"
+        :class="[
           'el-badge__content--' + type,
           {
             'is-fixed': $slots.default,
             'is-dot': isDot
           }
         ]"
-          v-text="content"
+        v-text="content"
       >
       </sup>
     </transition>
@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import {computed} from 'vue'
+import { computed } from 'vue'
 
 interface IBadgeProps {
   value: string | number;
@@ -60,7 +60,7 @@ export default {
       if (props.isDot) {
         return
       }
-      const {value, max} = props
+      const { value, max } = props
       if (typeof value === 'number' && typeof max === 'number') {
         return max < value ? `${max}+` : value
       }
