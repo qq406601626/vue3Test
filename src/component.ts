@@ -3,8 +3,8 @@ import BadgeInstall from '@element-plus/badge/index'
 import TagInstall from '@element-plus/tag/index'
 
 
-export const installAll = (app) => {
-    ButtonInstall(app)
-    BadgeInstall(app)
-    TagInstall(app);
+export const installAll = (app):void => {
+  ButtonInstall(app)
+  BadgeInstall(app)
+  TagInstall(app)
 }

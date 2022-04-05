@@ -1,40 +1,40 @@
 <template>
   <span
-      v-if="!disableTransitions"
-      :class="classes"
-      :style="{ backgroundColor: color }"
-      @click="handleClick"
+    v-if="!disableTransitions"
+    :class="classes"
+    :style="{ backgroundColor: color }"
+    @click="handleClick"
   >
     <slot></slot>
     <i
-        v-if="closable"
-        class="el-tag__close el-icon-close"
-        @click="handleClose"
+      v-if="closable"
+      class="el-tag__close el-icon-close"
+      @click="handleClose"
     >
     </i>
   </span>
   <transition v-else name="el-zoom-in-center">
-       <span
-           :class="classes"
-           :style="{ backgroundColor: color }"
-           @click="handleClick"
-       >
-            <slot/>
-            <i
-                v-if="closable"
-                class="el-tag__close el-icon-close"
-                @click="handleClose"
-            ></i>
-        </span>
+    <span
+      :class="classes"
+      :style="{ backgroundColor: color }"
+      @click="handleClick"
+    >
+      <slot></slot>
+      <i
+        v-if="closable"
+        class="el-tag__close el-icon-close"
+        @click="handleClose"
+      ></i>
+    </span>
   </transition>
 </template>
 
 <script lang="ts">
-import {h, computed} from 'vue'
+import {computed, defineComponent} from 'vue'
 
 const ELEMENT: { size?: number } = {}
-export default {
-  name: "ElTag",
+export default defineComponent({
+  name: 'ElTag',
   props: {
     closable: Boolean,
     type: String,
@@ -46,8 +46,8 @@ export default {
       type: String,
       default: 'light',
       validator: (val: string): boolean => {
-        return ['dark', 'light', 'plain'].indexOf(val) !== -1;
-      }
+        return ['dark', 'light', 'plain'].indexOf(val) !== -1
+      },
     },
   },
   setup(props, ctx) {
@@ -59,20 +59,20 @@ export default {
     const classes = computed(() => {
       const {type, hit, effect} = props
       return [
-        "el-tag",
-        type ? `el-tag--${type}` : "",
-        tagSize ? `el-tag--${tagSize.value}` : "",
-        effect ? `el-tag--${effect}` : "",
-        hit && "is-hit",
+        'el-tag',
+        type ? `el-tag--${type}` : '',
+        tagSize.value ? `el-tag--${tagSize.value}` : '',
+        effect ? `el-tag--${effect}` : '',
+        hit && 'is-hit',
       ]
     })
     // methods
     const handleClose = (event) => {
-      event.stopPropagation();
-      ctx.emit('close', event);
+      event.stopPropagation()
+      ctx.emit('close', event)
     }
     const handleClick = (event) => {
-      ctx.emit('close', event);
+      ctx.emit('close', event)
     }
     return {
       tagSize,
@@ -80,8 +80,8 @@ export default {
       handleClose,
       handleClick,
     }
-  }
-}
+  },
+})
 </script>
 
 <style scoped>
