@@ -1,29 +1,29 @@
 <template>
   <span
-    v-if="!disableTransitions"
-    :class="classes"
-    :style="{ backgroundColor: color }"
-    @click="handleClick"
+      v-if="!disableTransitions"
+      :class="classes"
+      :style="{ backgroundColor: color }"
+      @click="handleClick"
   >
     <slot></slot>
     <i
-      v-if="closable"
-      class="el-tag__close el-icon-close"
-      @click="handleClose"
+        v-if="closable"
+        class="el-tag__close el-icon-close"
+        @click="handleClose"
     >
     </i>
   </span>
   <transition v-else name="el-zoom-in-center">
     <span
-      :class="classes"
-      :style="{ backgroundColor: color }"
-      @click="handleClick"
+        :class="classes"
+        :style="{ backgroundColor: color }"
+        @click="handleClick"
     >
       <slot></slot>
       <i
-        v-if="closable"
-        class="el-tag__close el-icon-close"
-        @click="handleClose"
+          v-if="closable"
+          class="el-tag__close el-icon-close"
+          @click="handleClose"
       ></i>
     </span>
   </transition>
@@ -33,6 +33,17 @@
 import {computed, defineComponent} from 'vue'
 
 const ELEMENT: { size?: number } = {}
+
+interface ITagProps {
+  closable: boolean,
+  type: string,
+  hit: boolean,
+  disableTransitions: boolean,
+  color: string,
+  size: string,
+  effect: string;
+}
+
 export default defineComponent({
   name: 'ElTag',
   props: {
@@ -50,7 +61,8 @@ export default defineComponent({
       },
     },
   },
-  setup(props, ctx) {
+  emits: ['close'],
+  setup(props:ITagProps, ctx) {
     // computed
     const tagSize = computed(() => {
       // todo ctx.$ELEMENT
