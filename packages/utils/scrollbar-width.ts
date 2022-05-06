@@ -1,14 +1,11 @@
 import isServer from './isServer'
-import doc from '@element-plus/tag/doc/index.vue'
 
 let scrollBarWidth: number
-export default function () {
-  if (isServer) {
-    return 0
-  }
-  if (scrollBarWidth !== undefined) {
-    return scrollBarWidth
-  }
+
+export default function() {
+  if (isServer) return 0
+  if (scrollBarWidth !== undefined) return scrollBarWidth
+
   const outer = document.createElement('div')
   outer.className = 'el-scrollbar__wrap'
   outer.style.visibility = 'hidden'
@@ -27,4 +24,6 @@ export default function () {
   const widthWithScroll = inner.offsetWidth
   outer.parentNode.removeChild(outer)
   scrollBarWidth = widthNoScroll - widthWithScroll
+
+  return scrollBarWidth
 }

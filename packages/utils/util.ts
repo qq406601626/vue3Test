@@ -2,13 +2,14 @@ import isServer from './isServer'
 import { isObject, castArray, isEmpty, isEqual, capitalize } from 'lodash-es'
 
 const { hasOwnProperty } = Object.prototype
+
 type Any = Record<string, unknown> | unknown
 
 export function hasOwn(obj: Any, key: string): boolean {
   return hasOwnProperty.call(obj, key)
 }
 
-function extend<T, K>(to: T, _from: K): T & K {
+function extend<T, K>(to: T, _from: K): T & K  {
   return Object.assign(to, _from)
 }
 
@@ -31,13 +32,15 @@ export const getValueByPath = (obj: Any, paths = ''): unknown => {
 }
 
 export function getPropByPath(obj: Any, path: string, strict: boolean): {
-    o: unknown,
-    k: string,
-    v: Nullable<unknown>
+  o: unknown,
+  k: string,
+  v: Nullable<unknown>,
 } {
+  // we can't use any here, the only option here is unknown
   let tempObj: unknown = obj
   path = path.replace(/\[(\w+)\]/g, '.$1')
   path = path.replace(/^\./, '')
+
   const keyArr = path.split('.')
   let i = 0
   for (i; i < keyArr.length - 1; i++) {
@@ -55,28 +58,39 @@ export function getPropByPath(obj: Any, path: string, strict: boolean): {
   }
 }
 
-export const generateId = (): number => Math.floor(Math.random() * 1000)
+/**
+ * Generate random number in range [0, 1000]
+ * Maybe replace with [uuid](https://www.npmjs.com/package/uuid)
+ */
+export const generateId = (): number => Math.floor(Math.random() * 10000)
 
-export const escapeRegexpString = (value = ''): string =>
-  String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+// use isEqual instead
+// export const valueEquals
 
+
+export const escapeRegexpString = (value = ''): string=>
+    String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+
+// Use native Array.find, Array.findIndex instead
+
+// coerce truthy value to array
 export const coerceTruthyValueToArray = castArray
 
-export const isIE = function (): boolean {
-  return !isServer && !isNaN(Number(document.COMMENT_NODE))
+export const isIE = function(): boolean {
+  return !isServer && !isNaN(Number(document.DOCUMENT_NODE))
 }
 
-export const isEdge = function (): boolean {
+export const isEdge = function(): boolean {
   return !isServer && navigator.userAgent.indexOf('Edge') > -1
 }
 
-export const isFirefox = function (): boolean {
+export const isFirefox = function(): boolean {
   return (
-    !isServer && !!window.navigator.userAgent.match(/firefox/i)
+      !isServer && !!window.navigator.userAgent.match(/firefox/i)
   )
 }
 
-export const autoprefixer = function (style: CSSStyleDeclaration): CSSStyleDeclaration {
+export const autoprefixer = function(style: CSSStyleDeclaration): CSSStyleDeclaration {
   if (typeof style !== 'object') return style
   const rules = ['transform', 'transition', 'animation']
   const prefixes = ['ms-', 'webkit-']
@@ -90,14 +104,16 @@ export const autoprefixer = function (style: CSSStyleDeclaration): CSSStyleDecla
   })
   return style
 }
-export const kebabCase = function (str: string): string {
+
+export const kebabCase = function(str: string): string {
   const hyphenateRE = /([^-])([A-Z])/g
   return str
-    .replace(hyphenateRE, '$1-$2')
-    .replace(hyphenateRE, '$1-$2')
-    .toLowerCase()
+      .replace(hyphenateRE, '$1-$2')
+      .replace(hyphenateRE, '$1-$2')
+      .toLowerCase()
 }
-export const looseEqual = function <T, K>(a: T, b: K): boolean {
+
+export const looseEqual = function<T, K>(a: T, b: K): boolean {
   const isObjectA = isObject(a)
   const isObjectB = isObject(b)
   if (isObjectA && isObjectB) {
@@ -109,15 +125,16 @@ export const looseEqual = function <T, K>(a: T, b: K): boolean {
   }
 }
 
+// reexport from lodash
 export {
   isEmpty,
   isEqual,
   capitalize,
 }
 
-export function rafThrottle(fn: (args: Record<string, unknown>) => unknown): (...args: any[]) => any {
+export function rafThrottle(fn: (args: Record<string, unknown>) => unknown): (...args: unknown[]) => unknown {
   let locked = false
-  return function (...args) {
+  return function(...args) {
     if (locked) return
     locked = true
     window.requestAnimationFrame(() => {
@@ -129,3 +146,4 @@ export function rafThrottle(fn: (args: Record<string, unknown>) => unknown): (..
 
 export const objToArray = castArray
 
+export { isVNode } from 'vue'
