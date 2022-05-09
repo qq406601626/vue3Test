@@ -11,9 +11,6 @@
 </template>
 
 <script>
-// import {DirectiveBinding, VNode} from 'vue'
-// console.log(DirectiveBinding)
-// import {DirectiveBinding, VNode} from 'vue'
 export default {
   name: 'App',
 }

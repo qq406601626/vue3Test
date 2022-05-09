@@ -7,7 +7,7 @@ import ElCard from '@element-plus/card'
 
 
 export {
-    ElButton, ElBadge, ElTag, ElDivider,
+    ElButton, ElBadge, ElCard, ElDivider, ElTag,
 }
 
 export default function install(app: App): void {
