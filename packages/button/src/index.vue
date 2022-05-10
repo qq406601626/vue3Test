@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="[
+      :class="[
       'el-button',
       type ? 'el-button--' + type : '',
       buttonSize ? 'el-button--' + buttonSize : '',
@@ -12,10 +12,10 @@
         'is-circle': circle
       }
     ]"
-    :disabled="buttonDisabled || loading"
-    :autofocus="autofocus"
-    :type="nativeType"
-    @click="handleClick"
+      :disabled="buttonDisabled || loading"
+      :autofocus="autofocus"
+      :type="nativeType"
+      @click="handleClick"
   >
     <i v-if="loading" class="el-icon-loading"></i>
     <i v-if="icon && !loading" :class="icon"></i>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang='ts'>
-import { computed, inject, defineComponent } from 'vue'
+import {computed, inject, defineComponent} from 'vue'
 
 const ELEMENT: {
   size?: number;
@@ -52,8 +52,10 @@ interface IButtonProps {
   circle: boolean;
 }
 
+type EmitFn = (evt: Event) => void
+
 interface IButtonSetups {
-  _elFormItemSize: string;
+  _elFormItemSize: number;
   buttonSize: string;
   buttonDisabled: boolean;
   handleClick: EmitFn;
@@ -89,7 +91,7 @@ export default defineComponent({
 
   emits: ['click'],
 
-  setup(props:IButtonProps, ctx):IButtonSetups {
+  setup(props: IButtonProps, ctx): IButtonSetups {
     // inject
     const elForm = inject<ElForm>('elForm')
     const elFormItem = inject<ElFormItem>('elFormItem')

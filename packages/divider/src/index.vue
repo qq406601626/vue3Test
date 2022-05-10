@@ -1,11 +1,11 @@
 <template>
   <div
       v-bind="$attrs"
-      :class="['el-divider',`el-divider--${direction}`]"
+      :class="['el-divider', `el-divider--${direction}`]"
   >
     <div
-        v-if="$slots.default&&direction!=='vertical'"
-        :class="['el-divider__text',`is-${contentPosition}`]"
+        v-if="$slots.default && direction !== 'vertical'"
+        :class="['el-divider__text', `is-${contentPosition}`]"
     >
       <slot></slot>
     </div>
@@ -13,11 +13,11 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
 
 interface IDividerProps {
-  direction: string,
-  contentPosition: string
+  direction: string;
+  contentPosition: string;
 }
 
 export default defineComponent({
@@ -28,7 +28,7 @@ export default defineComponent({
       default: 'horizontal',
       validator(val: string): boolean {
         return ['horizontal', 'vertical'].indexOf(val) !== -1
-      }
+      },
     },
     contentPosition: {
       type: String,
@@ -36,7 +36,7 @@ export default defineComponent({
       validator(val: string): boolean {
         return ['left', 'center', 'right'].indexOf(val) !== -1
       },
-    }
-  }
+    },
+  },
 })
 </script>
