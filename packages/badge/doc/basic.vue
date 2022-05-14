@@ -8,7 +8,7 @@
   <el-badge :value="1" class="item" type="primary">
     <el-button size="small">comments</el-button>
   </el-badge>
-  <el-badge value="hot" class="item" type="warning">
+  <el-badge :value="2" class="item" type="warning">
     <el-button size="small">replies</el-button>
   </el-badge>
 </template>

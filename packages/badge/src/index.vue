@@ -31,9 +31,8 @@ interface IBadgeProps {
 }
 
 interface IBadgeSetups {
-  content: number | string
+  content: number | string;
 }
-
 export default {
   name: 'ElBadge',
   props: {
@@ -55,7 +54,7 @@ export default {
       },
     },
   },
-  setup(props:IBadgeProps):IBadgeSetups {
+  setup(props: IBadgeProps): IBadgeSetups {
     const content = computed(() => {
       if (props.isDot) {
         return

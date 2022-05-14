@@ -1,5 +1,5 @@
 export default {
-    title: 'Card',
+  title: 'Card',
 }
 
 export const BasicCard = () :string => '<el-card header="I am the header">basic card</el-card>'

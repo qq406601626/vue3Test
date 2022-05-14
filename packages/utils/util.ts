@@ -32,9 +32,9 @@ export const getValueByPath = (obj: Any, paths = ''): unknown => {
 }
 
 export function getPropByPath(obj: Any, path: string, strict: boolean): {
-  o: unknown,
-  k: string,
-  v: Nullable<unknown>,
+  o: unknown
+  k: string
+  v: Nullable<unknown>
 } {
   // we can't use any here, the only option here is unknown
   let tempObj: unknown = obj
@@ -69,7 +69,7 @@ export const generateId = (): number => Math.floor(Math.random() * 10000)
 
 
 export const escapeRegexpString = (value = ''): string=>
-    String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+  String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
 
 // Use native Array.find, Array.findIndex instead
 
@@ -86,7 +86,7 @@ export const isEdge = function(): boolean {
 
 export const isFirefox = function(): boolean {
   return (
-      !isServer && !!window.navigator.userAgent.match(/firefox/i)
+    !isServer && !!window.navigator.userAgent.match(/firefox/i)
   )
 }
 
@@ -108,9 +108,9 @@ export const autoprefixer = function(style: CSSStyleDeclaration): CSSStyleDeclar
 export const kebabCase = function(str: string): string {
   const hyphenateRE = /([^-])([A-Z])/g
   return str
-      .replace(hyphenateRE, '$1-$2')
-      .replace(hyphenateRE, '$1-$2')
-      .toLowerCase()
+    .replace(hyphenateRE, '$1-$2')
+    .replace(hyphenateRE, '$1-$2')
+    .toLowerCase()
 }
 
 export const looseEqual = function<T, K>(a: T, b: K): boolean {

@@ -28,11 +28,11 @@ export default defineComponent({
 
     return () => {
       return h(
-          'ul',
-          {
-            class: { 'el-timeline': true },
-          },
-          ctx.slots.default?.(),
+        'ul',
+        {
+          class: { 'el-timeline': true },
+        },
+        ctx.slots.default?.(),
       )
     }
   },

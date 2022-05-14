@@ -1,11 +1,11 @@
 <template>
   <div
-      v-bind="$attrs"
-      :class="['el-divider', `el-divider--${direction}`]"
+    v-bind="$attrs"
+    :class="['el-divider', `el-divider--${direction}`]"
   >
     <div
-        v-if="$slots.default && direction !== 'vertical'"
-        :class="['el-divider__text', `is-${contentPosition}`]"
+      v-if="$slots.default && direction !== 'vertical'"
+      :class="['el-divider__text', `is-${contentPosition}`]"
     >
       <slot></slot>
     </div>

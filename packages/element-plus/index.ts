@@ -1,21 +1,37 @@
-import type {App} from 'vue'
+import type { App } from 'vue'
 import ElAvatar from '@element-plus/avatar'
 import ElButton from '@element-plus/button'
 import ElBadge from '@element-plus/badge'
-import ElTag from '@element-plus/tag'
-import ElDivider from '@element-plus/divider'
 import ElCard from '@element-plus/card'
-
+import ElTag from '@element-plus/tag'
+import ElLayout from '@element-plus/layout'
+import ElDivider from '@element-plus/divider'
+import ElTimeLine from '@element-plus/time-line'
+import ElProgress from '@element-plus/progress'
+import ElBreadcrumb from '@element-plus/breadcrumb'
 
 export {
-    ElAvatar, ElButton, ElBadge, ElCard, ElDivider, ElTag,
+  ElAvatar,
+  ElLayout,
+  ElButton,
+  ElBadge,
+  ElCard,
+  ElDivider,
+  ElTag,
+  ElTimeLine,
+  ElProgress,
+  ElBreadcrumb,
 }
 
 export default function install(app: App): void {
-    ElAvatar(app)
-    ElButton(app)
-    ElBadge(app)
-    ElTag(app)
-    ElDivider(app)
-    ElCard(app)
+  ElAvatar(app)
+  ElButton(app)
+  ElBadge(app)
+  ElCard(app)
+  ElTag(app)
+  ElLayout(app)
+  ElDivider(app)
+  ElTimeLine(app)
+  ElProgress(app)
+  ElBreadcrumb(app)
 }

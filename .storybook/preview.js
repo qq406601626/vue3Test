@@ -10,12 +10,12 @@ import './demo.css'
  * @param {VueElement}
  */
 const Wrapper = (template) => {
-    return {
-        data() {
-            return {}
-        },
-        template,
-    }
+  return {
+    data() {
+      return {}
+    },
+    template,
+  }
 }
 
 /**
@@ -26,15 +26,15 @@ const Wrapper = (template) => {
  * @return {HTMLElement}
  */
 function CustomDecorator(content, context) {
-    const templateOrComponent = content()
-    const app = typeof templateOrComponent === 'string'
-        ? createApp(Wrapper(templateOrComponent))
-        : createApp(templateOrComponent)
-    install(app)
-    const entry = document.createElement('div')
-    entry.className = 'element-plus-previewer'
-    app.mount(entry)
-    return entry
+  const templateOrComponent = content()
+  const app = typeof templateOrComponent === 'string'
+    ? createApp(Wrapper(templateOrComponent))
+    : createApp(templateOrComponent)
+  install(app)
+  const entry = document.createElement('div')
+  entry.className = 'element-plus-previewer'
+  app.mount(entry)
+  return entry
 }
 
 addDecorator(CustomDecorator);

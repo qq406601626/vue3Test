@@ -10,8 +10,7 @@
       v-if="closable"
       class="el-tag__close el-icon-close"
       @click="handleClose"
-    >
-    </i>
+    ></i>
   </span>
   <transition v-else name="el-zoom-in-center">
     <span
@@ -29,30 +28,39 @@
   </transition>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { computed, defineComponent } from 'vue'
-
-const ELEMENT: { size?: number } = {}
+const ELEMENT: {
+  size?: number;
+} = {}
 
 interface ITagProps {
   closable: boolean,
-  type: string,
-  hit: boolean,
-  disableTransitions: boolean,
-  color: string,
-  size: string,
-  effect: string;
+    type: string,
+    hit: boolean,
+    disableTransitions: boolean,
+    color: string,
+    size: string,
+    effect: string;
 }
-
 export default defineComponent({
   name: 'ElTag',
   props: {
     closable: Boolean,
-    type: String,
+    type: {
+      type: String,
+      default: '',
+    },
     hit: Boolean,
     disableTransitions: Boolean,
-    color: String,
-    size: String,
+    color: {
+      type: String,
+      default: '',
+    },
+    size: {
+      type: String,
+      default: '',
+    },
     effect: {
       type: String,
       default: 'light',
@@ -62,7 +70,7 @@ export default defineComponent({
     },
   },
   emits: ['close'],
-  setup(props:ITagProps, ctx) {
+  setup(props, ctx) {
     // computed
     const tagSize = computed(() => {
       // todo ctx.$ELEMENT
@@ -73,19 +81,22 @@ export default defineComponent({
       return [
         'el-tag',
         type ? `el-tag--${type}` : '',
-        tagSize.value ? `el-tag--${tagSize.value}` : '',
+        'tagSize' ? `el-tag--${tagSize.value}` : '',
         effect ? `el-tag--${effect}` : '',
         hit && 'is-hit',
       ]
     })
+
     // methods
     const handleClose = (event) => {
       event.stopPropagation()
       ctx.emit('close', event)
     }
+
     const handleClick = (event) => {
       ctx.emit('close', event)
     }
+
     return {
       tagSize,
       classes,
@@ -95,4 +106,3 @@ export default defineComponent({
   },
 })
 </script>
-

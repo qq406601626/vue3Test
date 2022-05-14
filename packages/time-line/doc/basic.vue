@@ -2,13 +2,13 @@
   <div class="block">
     <el-time-line>
       <el-time-line-item
-          v-for="(activity, index) in activities"
-          :key="index"
-          :timestamp="activity.timestamp"
-          :placement="activity.placement"
-          :hide-timestamp="activity.hideTimestamp"
-          :type="activity.type"
-          :icon="activity.icon"
+        v-for="(activity, index) in activities"
+        :key="index"
+        :timestamp="activity.timestamp"
+        :placement="activity.placement"
+        :hide-timestamp="activity.hideTimestamp"
+        :type="activity.type"
+        :icon="activity.icon"
       >
         {{ activity.content }}
       </el-time-line-item>

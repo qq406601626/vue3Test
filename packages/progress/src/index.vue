@@ -1,7 +1,7 @@
 <template>
   <div
-      class="el-progress"
-      :class="[
+    class="el-progress"
+    :class="[
       `el-progress--${type}`,
       status ? `is-${status}` : '',
       {
@@ -9,10 +9,10 @@
         'el-progress--text-inside': textInside,
       }
     ]"
-      role="progressbar"
-      :aria-valuenow="percentage"
-      aria-valuemin="0"
-      aria-valuemax="100"
+    role="progressbar"
+    :aria-valuenow="percentage"
+    aria-valuemin="0"
+    aria-valuemax="100"
   >
     <div v-if="type === 'line'" class="el-progress-bar">
       <div class="el-progress-bar__outer" :style="{height: `${strokeWidth}px`}">
@@ -24,28 +24,28 @@
     <div v-else class="el-progress-circle" :style="{height: `${width}px`, width: `${width}px`}">
       <svg viewBox="0 0 100 100">
         <path
-            class="el-progress-circle__track"
-            :d="trackPath"
-            stroke="#e5e9f2"
-            :stroke-width="relativeStrokeWidth"
-            fill="none"
-            :style="trailPathStyle"
+          class="el-progress-circle__track"
+          :d="trackPath"
+          stroke="#e5e9f2"
+          :stroke-width="relativeStrokeWidth"
+          fill="none"
+          :style="trailPathStyle"
         />
         <path
-            class="el-progress-circle__path"
-            :d="trackPath"
-            :stroke="stroke"
-            fill="none"
-            :stroke-linecap="strokeLinecap"
-            :stroke-width="percentage ? relativeStrokeWidth : 0"
-            :style="circlePathStyle"
+          class="el-progress-circle__path"
+          :d="trackPath"
+          :stroke="stroke"
+          fill="none"
+          :stroke-linecap="strokeLinecap"
+          :stroke-width="percentage ? relativeStrokeWidth : 0"
+          :style="circlePathStyle"
         />
       </svg>
     </div>
     <div
-        v-if="showText && !textInside"
-        class="el-progress__text"
-        :style="{fontSize: `${progressTextSize}px`}"
+      v-if="showText && !textInside"
+      class="el-progress__text"
+      :style="{fontSize: `${progressTextSize}px`}"
     >
       <template v-if="!status">{{ content }}</template>
       <i v-else :class="iconClass"></i>
@@ -213,8 +213,8 @@ export default defineComponent({
 
     const progressTextSize = computed(() => {
       return props.type === 'line'
-          ? 12 + props.strokeWidth * 0.4
-          : props.width * 0.111111 + 2
+        ? 12 + props.strokeWidth * 0.4
+        : props.width * 0.111111 + 2
     })
 
     const content = computed(() => {

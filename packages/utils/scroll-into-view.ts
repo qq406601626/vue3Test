@@ -1,9 +1,9 @@
 import isServer from './isServer'
 
 export default function scrollIntoView(
-    container: HTMLElement,
-    selected: HTMLElement,
-) {
+  container: HTMLElement,
+  selected: HTMLElement,
+): void {
   if (isServer) return
 
   if (!selected) {
@@ -14,16 +14,16 @@ export default function scrollIntoView(
   const offsetParents = []
   let pointer = selected.offsetParent
   while (
-      pointer !== null &&
-      container !== pointer &&
-      container.contains(pointer)
-      ) {
+    pointer !== null &&
+    container !== pointer &&
+    container.contains(pointer)
+  ) {
     offsetParents.push(pointer)
     pointer = (pointer as HTMLElement).offsetParent
   }
   const top =
-      selected.offsetTop +
-      offsetParents.reduce((prev, curr) => prev + curr.offsetTop, 0)
+    selected.offsetTop +
+    offsetParents.reduce((prev, curr) => prev + curr.offsetTop, 0)
   const bottom = top + selected.offsetHeight
   const viewRectTop = container.scrollTop
   const viewRectBottom = viewRectTop + container.clientHeight

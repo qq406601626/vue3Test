@@ -10,10 +10,10 @@ const trim = function(s: string) {
 /* istanbul ignore next */
 const camelCase = function(name: string) {
   return name
-      .replace(SPECIAL_CHARS_REGEXP, function(_, __, letter, offset) {
-        return offset ? letter.toUpperCase() : letter
-      })
-      .replace(MOZ_HACK_REGEXP, 'Moz$1')
+    .replace(SPECIAL_CHARS_REGEXP, function(_, __, letter, offset) {
+      return offset ? letter.toUpperCase() : letter
+    })
+    .replace(MOZ_HACK_REGEXP, 'Moz$1')
 }
 
 /* istanbul ignore next */
@@ -21,9 +21,9 @@ export const on = (function() {
   // Since Vue3 does not support < IE11, we don't need to support it as well.
   if (!isServer) {
     return function(
-        element: HTMLElement | Document,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
+      element: HTMLElement | Document,
+      event: string,
+      handler: EventListenerOrEventListenerObject,
     ) {
       if (element && event && handler) {
         element.addEventListener(event, handler, false)
@@ -36,9 +36,9 @@ export const on = (function() {
 export const off = (function() {
   if (!isServer) {
     return function(
-        element: HTMLElement,
-        event: string,
-        handler: EventListenerOrEventListenerObject,
+      element: HTMLElement,
+      event: string,
+      handler: EventListenerOrEventListenerObject,
     ) {
       if (element && event) {
         element.removeEventListener(event, handler, false)
@@ -49,9 +49,9 @@ export const off = (function() {
 
 /* istanbul ignore next */
 export const once = function(
-    el: HTMLElement,
-    event: string,
-    fn: EventListener,
+  el: HTMLElement,
+  event: string,
+  fn: EventListener,
 ): void {
   const listener = function(...args: unknown[]) {
     if (fn) {
@@ -122,8 +122,8 @@ export function removeClass(el: HTMLElement, cls: string): void {
 // camelCase(s: string)
 // Same as the return type
 export const getStyle = function(
-    element: HTMLElement,
-    styleName: string,
+  element: HTMLElement,
+  styleName: string,
 ): string {
   if (isServer) return
   if (!element || !styleName) return null
@@ -141,9 +141,9 @@ export const getStyle = function(
 
 /* istanbul ignore next */
 export function setStyle(
-    element: HTMLElement,
-    styleName: CSSStyleDeclaration | string,
-    value: string,
+  element: HTMLElement,
+  styleName: CSSStyleDeclaration | string,
+  value: string,
 ): void {
   if (!element || !styleName) return
 
@@ -165,17 +165,17 @@ export const isScroll = (el: HTMLElement, isVertical?: Nullable<boolean>): RegEx
 
   const determinedDirection = isVertical !== null || isVertical !== undefined
   const overflow = determinedDirection
-      ? isVertical
-          ? getStyle(el, 'overflow-y')
-          : getStyle(el, 'overflow-x')
-      : getStyle(el, 'overflow')
+    ? isVertical
+      ? getStyle(el, 'overflow-y')
+      : getStyle(el, 'overflow-x')
+    : getStyle(el, 'overflow')
 
   return overflow.match(/(scroll|auto)/)
 }
 
 export const getScrollContainer = (
-    el: HTMLElement,
-    isVertical?: Nullable<boolean>,
+  el: HTMLElement,
+  isVertical?: Nullable<boolean>,
 ): Window | HTMLElement => {
   if (isServer) return
   el.classList
@@ -200,9 +200,9 @@ export const isInContainer = (el: HTMLElement, container: HTMLElement): boolean 
   let containerRect: Partial<DOMRect>
 
   if (
-      [window, document, document.documentElement, null, undefined].includes(
-          container,
-      )
+    [window, document, document.documentElement, null, undefined].includes(
+      container,
+    )
   ) {
     containerRect = {
       top: 0,
@@ -215,9 +215,9 @@ export const isInContainer = (el: HTMLElement, container: HTMLElement): boolean 
   }
 
   return (
-      elRect.top < containerRect.bottom &&
-      elRect.bottom > containerRect.top &&
-      elRect.right > containerRect.left &&
-      elRect.left < containerRect.right
+    elRect.top < containerRect.bottom &&
+    elRect.bottom > containerRect.top &&
+    elRect.right > containerRect.left &&
+    elRect.left < containerRect.right
   )
 }

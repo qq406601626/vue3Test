@@ -1,20 +1,20 @@
 <template>
   <span :class="avatarClass" :style="sizeStyle">
     <img
-        v-if="(src || srcSet) && !hasLoadError"
-        :src="src"
-        @error="handleError"
-        :alt="alt"
-        :srcset="srcSet"
-        :style="{objectFit: fit}"
+      v-if="(src || srcSet) && !hasLoadError"
+      :src="src"
+      @error="handleError"
+      :alt="alt"
+      :srcset="srcSet"
+      :style="{objectFit: fit}"
     />
-    <i v-else-if="icon" :class="icon"/>
+    <i  v-else-if="icon" :class="icon"/>
     <slot v-else/>
   </span>
 </template>
 
 <script lang="ts">
-import {defineComponent, computed, ref} from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import type {EventEmitter} from '@element-plus/utils/types'
 
 export default defineComponent({
@@ -22,7 +22,7 @@ export default defineComponent({
   props: {
     size: {
       type: [Number, String],
-      validator(val) {
+      validator(this: never, val: unknown) {
         if (typeof val === 'string') {
           return ['large', 'medium', 'small'].includes(val)
         }
@@ -32,7 +32,7 @@ export default defineComponent({
     shape: {
       type: String,
       default: 'circle',
-      validator(val: string) {
+      validator(this: never, val: string) {
         return ['circle', 'square'].includes(val)
       }
     },
@@ -46,8 +46,9 @@ export default defineComponent({
       default: 'cover'
     }
   },
-  setup(props: any, {emit}) {
+  setup(props, {emit}) {
     const hasLoadError = ref(false)
+
     const avatarClass = computed(() => {
       const {size, icon, shape} = props
       let classList = ['el-avatar']
@@ -62,20 +63,20 @@ export default defineComponent({
       }
       return classList
     })
+
     const sizeStyle = computed(() => {
       const {size} = props
       return typeof size === 'number' ? {
-        height: `${size}px`,
-        width: `${size}px`,
-        lineHeight: `${size}px`
-      } : {}
+          height: `${size}px`,
+          width: `${size}px`,
+          lineHeight: `${size}px`
+        } : {}
     })
 
     function handleError(e: Event) {
       hasLoadError.value = true
       emit('error', e)
     }
-
     return {
       hasLoadError, avatarClass, sizeStyle, handleError
     }
