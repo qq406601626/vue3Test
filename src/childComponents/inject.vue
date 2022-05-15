@@ -1,14 +1,16 @@
 <template>
-
+<div>name:{{name}}</div>
 </template>
 
 <script lang="ts">
-import {defineComponent,inject} from "vue";
+import {defineComponent} from "vue";
 
 export default defineComponent({
   name:'inject',
-  setup(){
-    const user = inject('user')
+  props:{
+    name:Object
+  },
+  setup(props){
   }
 })
 </script>
