@@ -6,13 +6,13 @@
   <div class="block">
     <span class="demonstration">Progressive discoloration</span>
     <el-rate
-        v-model="value2"
-        :colors="colors"
+      v-model="value2"
+      :colors="colors"
     />
   </div>
   <el-rate
-      v-model="value"
-      show-text
+    v-model="value"
+    show-text
   />
 </template>
 

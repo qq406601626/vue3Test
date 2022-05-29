@@ -1,15 +1,16 @@
 <template>
   <div
-      ref="breadcrumb"
-      class="el-breadcrumb"
-      aria-label="Breadcrumb"
-      role="navigation">
+    ref="breadcrumb"
+    class="el-breadcrumb"
+    aria-label="Breadcrumb"
+    role="navigation"
+  >
     <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent, provide, ref, onMounted} from "vue";
+import { defineComponent, provide, ref, onMounted } from 'vue'
 
 interface IBreadcrumbProps {
   separator: string;
@@ -30,20 +31,19 @@ export default defineComponent({
   },
   setup(props: IBreadcrumbProps) {
     const breadcrumb = ref(null)
+
     provide('breadcrumb', props)
+
     onMounted(() => {
       const items = breadcrumb.value.querySelectorAll('.el-breadcrumb__item')
       if (items.length) {
         items[items.length - 1].setAttribute('aria-current', 'page')
       }
     })
+
     return {
       breadcrumb,
     }
-  }
+  },
 })
 </script>
-
-<style scoped>
-
-</style>

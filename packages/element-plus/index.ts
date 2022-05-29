@@ -6,12 +6,14 @@ import ElCard from '@element-plus/card'
 import ElTag from '@element-plus/tag'
 import ElLayout from '@element-plus/layout'
 import ElDivider from '@element-plus/divider'
-import ElTimeLine from '@element-plus/time-line'
+import ElTimeline from '@element-plus/timeline'
 import ElProgress from '@element-plus/progress'
 import ElBreadcrumb from '@element-plus/breadcrumb'
 import ElIcon from '@element-plus/icon'
 import ElLink from '@element-plus/link'
 import ElRate from '@element-plus/rate'
+import ElSwitch from '@element-plus/switch'
+import ElContainer from '@element-plus/container'
 
 export {
   ElAvatar,
@@ -21,12 +23,14 @@ export {
   ElCard,
   ElDivider,
   ElTag,
-  ElTimeLine,
+  ElTimeline,
   ElProgress,
   ElBreadcrumb,
   ElIcon,
   ElLink,
   ElRate,
+  ElSwitch,
+  ElContainer,
 }
 
 export default function install(app: App): void {
@@ -37,10 +41,12 @@ export default function install(app: App): void {
   ElTag(app)
   ElLayout(app)
   ElDivider(app)
-  ElTimeLine(app)
+  ElTimeline(app)
   ElProgress(app)
   ElBreadcrumb(app)
   ElIcon(app)
   ElLink(app)
   ElRate(app)
+  ElSwitch(app)
+  ElContainer(app)
 }

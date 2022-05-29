@@ -49,17 +49,17 @@
 import { inject, defineComponent } from 'vue'
 
 interface ITimeLineItemProps {
-    timestamp: string,
-    hideTimestamp: boolean,
-    placement: string,
-    type: string,
-    color: string,
-    size: string,
-    icon: string,
+    timestamp: string
+    hideTimestamp: boolean
+    placement: string
+    type: string
+    color: string
+    size: string
+    icon: string
 }
 
 export default defineComponent({
-  name: 'ElTimeLineItem',
+  name: 'ElTimelineItem',
   props: {
     timestamp: {
       type: String,

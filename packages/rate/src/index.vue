@@ -1,33 +1,33 @@
 <template>
   <div
-      class="el-rate"
-      role="slider"
-      :aria-valuenow="currentValue"
-      :aria-valuetext="text"
-      aria-valuemin="0"
-      :aria-valuemax="max"
-      tabindex="0"
-      @keydown="handleKey"
+    class="el-rate"
+    role="slider"
+    :aria-valuenow="currentValue"
+    :aria-valuetext="text"
+    aria-valuemin="0"
+    :aria-valuemax="max"
+    tabindex="0"
+    @keydown="handleKey"
   >
     <span
-        v-for="(item, key) in max"
-        :key="key"
-        class="el-rate__item"
-        :style="{ cursor: rateDisabled ? 'auto' : 'pointer' }"
-        @mousemove="setCurrentValue(item, $event)"
-        @mouseleave="resetCurrentValue"
-        @click="selectValue(item)"
+      v-for="(item, key) in max"
+      :key="key"
+      class="el-rate__item"
+      :style="{ cursor: rateDisabled ? 'auto' : 'pointer' }"
+      @mousemove="setCurrentValue(item, $event)"
+      @mouseleave="resetCurrentValue"
+      @click="selectValue(item)"
     >
       <i
-          :class="[classes[item - 1], { 'hover': hoverIndex === item }]"
-          class="el-rate__icon"
-          :style="getIconStyle(item)"
+        :class="[classes[item - 1], { 'hover': hoverIndex === item }]"
+        class="el-rate__icon"
+        :style="getIconStyle(item)"
       >
         <i
-            v-if="showDecimalIcon(item)"
-            :class="decimalIconClass"
-            :style="decimalStyle"
-            class="el-rate__decimal"
+          v-if="showDecimalIcon(item)"
+          :class="decimalIconClass"
+          :style="decimalStyle"
+          class="el-rate__decimal"
         >
         </i>
       </i>
@@ -134,10 +134,10 @@ export default defineComponent({
       let result = ''
       if (props.showScore) {
         result = props.scoreTemplate.replace(
-            /\{\s*value\s*\}/,
-            rateDisabled.value
-                ? `${props.modelValue}`
-                : `${currentValue.value}`,
+          /\{\s*value\s*\}/,
+          rateDisabled.value
+            ? `${props.modelValue}`
+            : `${currentValue.value}`,
         )
       } else if (props.showText) {
         result = props.texts[Math.ceil(currentValue.value) - 1]
@@ -147,22 +147,22 @@ export default defineComponent({
 
     function getValueFromMap(value: unknown, map: Record<string, unknown>) {
       const matchedKeys = Object.keys(map)
-          .filter(key => {
-            const val = map[key]
-            const excluded = isObject(val) ? val.excluded : false
-            return excluded ? value < key : value <= key
-          })
-          .sort((a: never, b: never) => a - b)
+        .filter(key => {
+          const val = map[key]
+          const excluded = isObject(val) ? val.excluded : false
+          return excluded ? value < key : value <= key
+        })
+        .sort((a: never, b: never) => a - b)
       const matchedValue = map[matchedKeys[0]]
       return isObject(matchedValue) ? matchedValue.value : (matchedValue || '')
     }
     const valueDecimal = computed(() => props.modelValue * 100 - Math.floor(props.modelValue) * 100)
     const colorMap = computed(() => isArray(props.colors)
-        ? {
-          [props.lowThreshold]: props.colors[0],
-          [props.highThreshold]: { value: props.colors[1], excluded: true },
-          [props.max]: props.colors[2],
-        } : props.colors,
+      ? {
+        [props.lowThreshold]: props.colors[0],
+        [props.highThreshold]: { value: props.colors[1], excluded: true },
+        [props.max]: props.colors[2],
+      } : props.colors,
     )
     const activeColor = computed(() => getValueFromMap(currentValue.value, colorMap.value))
     const decimalStyle = computed(() => {
@@ -179,11 +179,11 @@ export default defineComponent({
     })
 
     const classMap = computed(() => isArray(props.iconClasses)
-        ? {
-          [props.lowThreshold]: props.iconClasses[0],
-          [props.highThreshold]: { value: props.iconClasses[1], excluded: true },
-          [props.max]: props.iconClasses[2],
-        } : props.iconClasses,
+      ? {
+        [props.lowThreshold]: props.iconClasses[0],
+        [props.highThreshold]: { value: props.iconClasses[1], excluded: true },
+        [props.max]: props.iconClasses[2],
+      } : props.iconClasses,
     )
     const decimalIconClass = computed(() => getValueFromMap(props.modelValue, classMap.value))
     const voidClass = computed(() => rateDisabled.value ? props.disabledVoidIconClass : props.voidIconClass)
@@ -209,9 +209,9 @@ export default defineComponent({
       let showWhenDisabled = rateDisabled.value && valueDecimal.value > 0 && item - 1 < props.modelValue && item > props.modelValue
       /* istanbul ignore next */
       let showWhenAllowHalf = props.allowHalf &&
-          pointerAtLeftHalf.value &&
-          item - 0.5 <= currentValue.value &&
-          item > currentValue.value
+        pointerAtLeftHalf.value &&
+        item - 0.5 <= currentValue.value &&
+        item > currentValue.value
       return showWhenDisabled || showWhenAllowHalf
     }
 

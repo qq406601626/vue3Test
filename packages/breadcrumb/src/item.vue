@@ -1,9 +1,9 @@
 <template>
   <span class="el-breadcrumb__item">
     <span
-        ref="link"
-        :class="['el-breadcrumb__inner', to ? 'is-link' : '']"
-        role="link"
+      ref="link"
+      :class="['el-breadcrumb__inner', to ? 'is-link' : '']"
+      role="link"
     >
       <slot></slot>
     </span>
@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, inject, ref, onMounted} from 'vue'
-import {useRouter} from 'vue-router'
+import { defineComponent, inject, ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 interface IBreadcrumbInject {
   separator: string;
@@ -41,6 +41,7 @@ export default defineComponent({
   setup(props: IBreadcrumbItemProps) {
     const link = ref(null)
     const parent: IBreadcrumbInject = inject('breadcrumb')
+
     onMounted(() => {
       link.value.setAttribute('role', 'link')
       link.value.addEventListener('click', () => {
@@ -48,18 +49,14 @@ export default defineComponent({
         const router = useRouter()
         if (!router) return
         props.replace ? router.replace(props.to) : router.push(props.to)
-
       })
     })
+
     return {
       link,
       separator: parent?.separator,
       separatorClass: parent?.separatorClass,
     }
-  }
+  },
 })
 </script>
-
-<style scoped>
-
-</style>
